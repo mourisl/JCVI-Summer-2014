@@ -22,8 +22,8 @@ ChainNucmer: (ChainNucmer/reformat.pl, ChainNumcer/ChainNumcer.cpp)
 		Arguments:
 			-showChain: Output the coordinates of the fragments used in the chains.
 			-overlap xxx: Allow xxx bp overlapping for adjacent fragments in the chaining. [default: 0]
-			-distance ddd: The difference of the two gaps (one gap in A, one gap in B)between two fragments should be different less than ddd bases.
-		(You can pipe the reformat.pl and ChainNucmer) [default: infinity]
+			-distance ddd: The difference of the two gaps (one gap in A, one gap in B)between two fragments should be different less than ddd bases. [default: infinity]
+		(You can pipe the reformat.pl and ChainNucmer) 
 	Output:
 		For each scaffold in A, it will output a chain, the line will look like:
 	
