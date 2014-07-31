@@ -37,12 +37,23 @@ ChainNucmer: (ChainNucmer/reformat.pl, ChainNumcer/ChainNumcer.cpp)
 		5: The scaffold in B where the chain aligned to.
 		6: Number of the fragment in the chain
 		7...: The fragments in the chain: [(q1 q2) (r1 r2)]. Coordinates of (q1 q2) in A aligned to (r1 r2) in B.
-
+	Command example:
+		Lenient chain:
+			reformat.pl A.oneline.fa nucmer_B_A.coords | ./a.out -overlap 100 
+		Stringent chain:
+			reformat.pl A.oneline.fa nucmer_B_A.coords | ./a.out -overlap 100 -distance 10000
+	
 EvaluateContigOrder: (ChainNumcer/EvaluateContigOrder.pl)
+
+Assumption:
+
+1. The id field of assembly A's contigs is like ">scafold_id.index ...", the index indicate the order of those contigs in A.
+
+2. A's contig should be a roughly subset of assembly B.
 
 	Suppose we align the contigs of assembly A to a reference genome R and another assembly B.
 	1. Run the nucmer and show-coords, we get: nucmer_R_A_contig.coords, nucmer_B_A_contig.coords
-	2. Run: perl EvaluateContigOrder.pl A.contig.oneline.fa nucmer_R_A_contig.coords, nucmer_B_A_contig.coords 
+	2. Run: perl EvaluateContigOrder.pl A.contig.oneline.fa nucmer_R_A_contig.coords nucmer_B_A_contig.coords 
 						[-scafPortion sss | -verbose | -testGap B.oneline.fa | -refPortion rrr | -allowPartial]
 			Arguments:
 				-scafPortion sss: The retained contigs in a A's scaffold must coverage sss' portion of it. [default: 0]
@@ -66,7 +77,11 @@ EvaluateContigOrder: (ChainNumcer/EvaluateContigOrder.pl)
 				The fourth line (II) is the order and the orientation in B.
 				The LCS line: 3 is the number of retained contigs. Then the three number is the weighted LCS for A to R, A to B and B to R. 
 				The Event line describes what's the difference: "in the assembly" means A is different. "in the reference" means R is different, and "in the other assembly" means B is different.
-
+	Command example:
+		Stringent rule:
+			perl EvaluateContigOrder.pl A.contig.oneline.fa nucmer_R_A_contig.coords nucmer_B_A_contig.coords -scafPorition 0.5
+		Lenient rule:
+			perl EvaluateContigOrder.pl A.contig.oneline.fa nucmer_R_A_contig.coords nucmer_B_A_contig.coords -allowPartial
 		
 		
 		
