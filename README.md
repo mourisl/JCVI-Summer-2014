@@ -47,7 +47,7 @@ EvaluateContigOrder: (ChainNumcer/EvaluateContigOrder.pl)
 
 Assumption:
 (1) The id field of assembly A's contigs is like ">scafold_id.index ...", the index indicate the order of those contigs in A.
-(2) A's contig should be a roughly subset of assembly B.
+(2) A's contig should roughly be a subset of assembly B.
 
 	Suppose we align the contigs of assembly A to a reference genome R and another assembly B.
 	1. Run the nucmer and show-coords, we get: nucmer_R_A_contig.coords, nucmer_B_A_contig.coords
